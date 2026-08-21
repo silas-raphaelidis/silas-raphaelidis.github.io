@@ -53,14 +53,30 @@
     </div>
   </div>
 
-  <div class="detail-body">
+  <div class="detail-body" style="padding-bottom: 0;">
     <h2>Overview</h2>
     <p>A 3D infinite dungeon crawler built for a game programming class, with dungeons that generate and expand dynamically as the player explores, rather than conforming to a fixed grid.</p>
+  </div>
 
+  <div class="video-pair-section">
+    <h2>Demo</h2>
+    <div class="video-pair-captions">
+      <p class="video-caption">Demonstration of infinite dungeon generation.</p>
+      <p class="video-caption">Top down visualization. The dungeon generates as the player moves.</p>
+    </div>
+    <div class="video-pair">
+      <div class="video-embed">
+        <video src="assets/dungeons-and-danger/gameplay-demo.mp4" controls preload="metadata" playsinline></video>
+      </div>
+      <div class="video-embed">
+        <video src="assets/dungeons-and-danger/generation-demo.mp4" controls preload="metadata" playsinline></video>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-body" style="padding-top: 0;">
     <h2>The Problem</h2>
     <p>Most procedural dungeon systems constrain rooms to a grid, which makes both room placement and enemy pathfinding straightforward. Moving away from a grid, to allow rooms of arbitrary shape and orientation, meant losing those built-in guarantees and solving generation and pathfinding from scratch.</p>
-    <blockquote>Most procedural dungeon systems conform to a grid, which makes room placement and pathfinding straightforward.</blockquote>
-
     <h2>The Solution</h2>
     <p>Rooms are represented as a graph rather than grid cells, with the player's current room as the central node. The system maintains a perimeter of generated rooms around that center and prunes rooms as the player moves away from them, checking new rooms against existing geometry with bounding box collision before placing them.</p>
     <p>For enemy navigation, Dijkstra's algorithm runs across the room graph to compute the optimal path to the player, with nav mesh links handling the actual movement between connected rooms.</p>

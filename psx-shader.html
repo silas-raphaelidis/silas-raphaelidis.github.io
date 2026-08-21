@@ -58,8 +58,6 @@
 
     <h2>The Problem</h2>
     <p>The distance fog effect was the hardest part, since it meant working with Unity's depth buffer for the first time. Raw depth values don't map directly to world-space distances, which made the fog depth thresholds trickier to get right than expected.</p>
-    <blockquote>Implementing the distance fog effect required working with Unity's depth buffer for the first time. The raw depth values don't map directly to world-space distances, which made implementing the fog depth thresholds trickier than expected.</blockquote>
-
     <h2>The Solution</h2>
     <p>Unity's built-in helper functions convert the raw depth buffer values into linear eye depth, producing usable camera-relative distance values that the fog effect can threshold against directly.</p>
 
@@ -71,6 +69,33 @@
       <li>Fog depth thresholds</li>
       <li>Fog color</li>
     </ul>
+  </div>
+
+  <div class="gallery">
+    <h2>Shader Controls</h2>
+    <p class="gallery-intro">Each inspector-exposed control, demonstrated live.</p>
+    <div class="gallery-grid">
+      <button class="gallery-item" data-caption="Demo scene with the shader enabled vs. disabled.">
+        <img src="assets/psx-shader/shader-enabled-vs-disabled.gif" alt="Demo scene with the PSX shader enabled versus disabled">
+        <span class="gallery-caption">Shader enabled vs. disabled</span>
+      </button>
+      <button class="gallery-item" data-caption="Customizable levels of pixelation.">
+        <img src="assets/psx-shader/pixelation-levels.gif" alt="Customizable pixelation levels">
+        <span class="gallery-caption">Pixelation levels</span>
+      </button>
+      <button class="gallery-item" data-caption="Customizable number of possible values in each color channel.">
+        <img src="assets/psx-shader/color-quantization.gif" alt="Customizable color channel quantization">
+        <span class="gallery-caption">Color quantization</span>
+      </button>
+      <button class="gallery-item" data-caption="Customizable distance fog depth thresholds.">
+        <img src="assets/psx-shader/fog-depth-thresholds.gif" alt="Customizable distance fog depth thresholds">
+        <span class="gallery-caption">Fog depth thresholds</span>
+      </button>
+      <button class="gallery-item" data-caption="Customizable distance fog colors.">
+        <img src="assets/psx-shader/fog-colors.gif" alt="Customizable distance fog colors">
+        <span class="gallery-caption">Fog colors</span>
+      </button>
+    </div>
   </div>
 
   <div class="more-projects">
@@ -93,6 +118,41 @@
     <p>Built with plain HTML/CSS, hosted on GitHub Pages. <a href="https://github.com/Magicow7" target="_blank" rel="noopener">github.com/Magicow7</a></p>
   </div>
 </footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+  <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+
+  document.querySelectorAll('.gallery-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+      lightboxImg.src = item.querySelector('img').src;
+      lightboxImg.alt = item.querySelector('img').alt;
+      lightboxCaption.textContent = item.dataset.caption || '';
+      lightbox.classList.add('open');
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  }
+
+  lightbox.addEventListener('click', closeLightbox);
+  document.querySelector('.lightbox-close').addEventListener('click', function (e) {
+    e.stopPropagation();
+    closeLightbox();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
 
 </body>
 </html>

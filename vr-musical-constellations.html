@@ -53,14 +53,22 @@
     </div>
   </div>
 
-  <div class="detail-body">
+  <div class="detail-body" style="padding-bottom: 0;">
     <h2>Overview</h2>
     <p>A VR music experience for Meta Quest where the player floats in a space environment and shoots constellation targets to progressively unlock up to 10 layered music tracks. Built with a team of four and presented publicly as part of an immersive media design course.</p>
+  </div>
 
+  <div class="video-pair-section">
+    <h2>Demo</h2>
+    <p class="video-caption">VR demonstration below (best experienced with audio enabled).</p>
+    <div class="video-embed video-single">
+      <video src="assets/vr-musical-constellations/vr-demo.mp4" controls preload="metadata" playsinline></video>
+    </div>
+  </div>
+
+  <div class="detail-body" style="padding-top: 0;">
     <h2>The Problem</h2>
     <p>Each constellation needed to visibly pulse in sync with its own music track. Getting that timing precise, while staying performant on Meta Quest's limited hardware, turned out to be the harder half of the problem.</p>
-    <blockquote>The constellations needed to pulse in sync with their respective music tracks.</blockquote>
-
     <h2>The Solution</h2>
     <p>The system samples the amplitude of each audio source and maps it to the emission intensity of the matching constellation's glow. To avoid visible lag between sound and light, the amplitude is sampled slightly ahead of real-time playback rather than exactly on-beat, so the visual response lands in sync with what the player actually hears. The sampling rate itself was tuned carefully to balance responsiveness against the Quest's performance ceiling.</p>
 

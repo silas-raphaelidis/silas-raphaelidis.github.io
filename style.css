@@ -178,6 +178,11 @@ a:hover {
   padding: 8px 0 8px;
 }
 
+.video-single {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
 .video-pair-section h2 {
   font-size: 1.3rem;
   margin: 0 0 20px;
