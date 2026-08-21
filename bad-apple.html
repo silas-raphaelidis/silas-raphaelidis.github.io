@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bad Apple x GPU Instancing — Silas Raphaelidis</title>
+<meta name="description" content="Recreating the Bad Apple music video with 1,000 GPU-instanced paper airplanes, driven by a two-pass compute shader.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Silas Raphaelidis</a>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a class="current" href="projects.html">Projects</a>
+      <a href="https://www.linkedin.com/in/silas-raphaelidis-399760279/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <a class="back-link" href="projects.html">← Back to projects</a>
+
+  <div class="detail-hero">
+    <img class="detail-media" src="assets/thumbnails/bad-apple.gif" alt="Bad Apple x GPU Instancing footage">
+  </div>
+
+  <div class="detail-title">
+    <h1>Bad Apple x GPU Instancing</h1>
+    <p class="detail-meta">2024 · Independent Study · Solo Project</p>
+    <ul class="tag-list">
+      <li>Unity</li>
+      <li>HLSL</li>
+      <li>Compute Shaders</li>
+      <li>GPU Instancing</li>
+    </ul>
+    <div class="link-buttons">
+      <a class="btn btn-secondary" href="https://github.com/Magicow7/Bad-Apple-Boids" target="_blank" rel="noopener">Source on GitHub</a>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <h2>Overview</h2>
+    <p>A final project for an independent study on shader programming: recreating the "Bad Apple" music video in real time using 1,000 GPU-instanced paper airplanes, each acting as a single pixel-like unit in the final image.</p>
+
+    <h2>The Problem</h2>
+    <p>Reproducing the video's black-and-white frames meant distributing airplanes to match population density — dense in dark regions, sparse in light ones. Without that, airplanes would simply pile up on top of each other in white regions instead of spreading out naturally.</p>
+    <blockquote>Without accounting for population density, airplanes would pile up on top of each other in white regions instead of spreading out naturally.</blockquote>
+    <p>The naive fix — each airplane checking every other airplane's position to space itself out — is O(n²) across 1,000 objects per frame, which is far too expensive to run in real time.</p>
+
+    <h2>The Solution</h2>
+    <p>A two-pass compute shader architecture replaces the pairwise comparison entirely. The first pass has every airplane log its screen position in parallel to build a population density map. The second pass has each airplane sample that density map directly, rather than iterating over every other airplane, to decide where to move. Each airplane updates its own transformation matrix independently through the compute shader, and the whole set is rendered with GPU instancing.</p>
+
+    <h2>Result</h2>
+    <p>A solo project delivering a real-time recreation of the entire music video, driven by 1,000 procedurally animated objects, running at 500fps.</p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built with plain HTML/CSS, hosted on GitHub Pages. <a href="https://github.com/Magicow7" target="_blank" rel="noopener">github.com/Magicow7</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

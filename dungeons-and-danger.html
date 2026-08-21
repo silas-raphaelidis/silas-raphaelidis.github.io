@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dungeons and Danger — Silas Raphaelidis</title>
+<meta name="description" content="An infinite, non-grid procedural dungeon crawler with graph-based room generation and Dijkstra-driven enemy pathfinding.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Silas Raphaelidis</a>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a class="current" href="projects.html">Projects</a>
+      <a href="https://www.linkedin.com/in/silas-raphaelidis-399760279/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <a class="back-link" href="projects.html">← Back to projects</a>
+
+  <div class="detail-hero">
+    <img class="detail-media" src="assets/thumbnails/dungeons-and-danger.png" alt="Dungeons and Danger screenshot">
+  </div>
+
+  <div class="detail-title">
+    <h1>Dungeons and Danger</h1>
+    <p class="detail-meta">2024 · Game Programming course · 4-person team</p>
+    <ul class="tag-list">
+      <li>Unity</li>
+      <li>C#</li>
+      <li>Procedural Generation</li>
+      <li>Pathfinding</li>
+    </ul>
+    <div class="link-buttons">
+      <a class="btn btn-secondary" href="https://github.com/Magicow7/425-Final-Project" target="_blank" rel="noopener">Source on GitHub</a>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <h2>Overview</h2>
+    <p>A 3D infinite dungeon crawler built for a game programming class, with dungeons that generate and expand dynamically as the player explores, rather than conforming to a fixed grid.</p>
+
+    <h2>The Problem</h2>
+    <p>Most procedural dungeon systems constrain rooms to a grid, which makes both room placement and enemy pathfinding straightforward. Moving away from a grid — to allow rooms of arbitrary shape and orientation — meant losing those built-in guarantees and solving generation and pathfinding from scratch.</p>
+    <blockquote>Most procedural dungeon systems conform to a grid, which makes room placement and pathfinding straightforward.</blockquote>
+
+    <h2>The Solution</h2>
+    <p>Rooms are represented as a graph rather than grid cells, with the player's current room as the central node. The system maintains a perimeter of generated rooms around that center and prunes rooms as the player moves away from them, checking new rooms against existing geometry with bounding box collision before placing them.</p>
+    <p>For enemy navigation, Dijkstra's algorithm runs across the room graph to compute the optimal path to the player, with nav mesh links handling the actual movement between connected rooms.</p>
+
+    <h2>Result</h2>
+    <p>An infinitely generating 3D dungeon with dynamically loaded rooms and enemies that intelligently pursue the player across the graph. This project's post-process shader work was later split out into its own project: <a href="psx-shader.html">PSX Post Process Shader</a>.</p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built with plain HTML/CSS, hosted on GitHub Pages. <a href="https://github.com/Magicow7" target="_blank" rel="noopener">github.com/Magicow7</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

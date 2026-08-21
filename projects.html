@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Silas Raphaelidis</title>
+<meta name="description" content="Projects by Silas Raphaelidis: shaders, GPU programming, and real-time graphics work in Unity.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Silas Raphaelidis</a>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a class="current" href="projects.html">Projects</a>
+      <a href="https://www.linkedin.com/in/silas-raphaelidis-399760279/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <h1>Projects</h1>
+    <p>Shader work, gameplay systems, and real-time graphics — what each project solved and what it was built with.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="project-grid">
+
+    <article class="card">
+      <img class="card-thumb" src="assets/thumbnails/avant-guard.gif" alt="Avant Guard gameplay footage" loading="lazy">
+      <div class="card-body">
+        <h2>Avant Guard: Online Multiplayer Fighting Game</h2>
+        <p class="card-year">2026 — Senior Capstone, 4-person team</p>
+        <p class="card-summary">Built deterministic rollback netcode from scratch using Photon Quantum 3. Solved hitbox synchronization across clients by decoupling simulation from rendering. Playable online cross-continent. Actively shipping to Steam. Unity, Photon Quantum, C#, HLSL.</p>
+        <a class="card-link" href="avant-guard.html">Full project detail →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img class="card-thumb" src="assets/thumbnails/heart-rate-horror.gif" alt="Heart Rate Horror gameplay footage" loading="lazy">
+      <div class="card-body">
+        <h2>Heart Rate Horror: Biometric Horror Experience</h2>
+        <p class="card-year">2024 — Solo Project</p>
+        <p class="card-summary">Custom HLSL compute shaders driven by live heart rate data via Pulsoid webhook. Solved GPU-to-CPU readback bottleneck using InterlockedMax encoding. 90-110fps with 50 boids. Unity, C#, HLSL.</p>
+        <a class="card-link" href="heart-rate-horror.html">Full project detail →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img class="card-thumb" src="assets/thumbnails/bad-apple.gif" alt="Bad Apple x GPU Instancing footage" loading="lazy">
+      <div class="card-body">
+        <h2>Bad Apple x GPU Instancing</h2>
+        <p class="card-year">2024 — Independent Study</p>
+        <p class="card-summary">Recreated the Bad Apple music video using 1,000 GPU-instanced paper airplanes. Solved natural crowd distribution with a two-pass compute shader that builds a population density map instead of comparing every airplane to every other. Runs at 500fps. Unity, HLSL, Compute Shaders.</p>
+        <a class="card-link" href="bad-apple.html">Full project detail →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img class="card-thumb" src="assets/thumbnails/vr-musical-constellations.png" alt="VR Musical Constellations screenshot" loading="lazy">
+      <div class="card-body">
+        <h2>VR: Musical Constellations</h2>
+        <p class="card-year">2024 — 4-person team</p>
+        <p class="card-summary">VR music experience where shooting constellations unlocks layered tracks in a space environment. Solved audio-visual sync by sampling track amplitude ahead of playback to drive constellation glow without lag on Meta Quest hardware. Unity, C#, Meta Quest SDK.</p>
+        <a class="card-link" href="vr-musical-constellations.html">Full project detail →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img class="card-thumb" src="assets/thumbnails/dungeons-and-danger.png" alt="Dungeons and Danger screenshot" loading="lazy">
+      <div class="card-body">
+        <h2>Dungeons and Danger</h2>
+        <p class="card-year">2024 — 4-person team</p>
+        <p class="card-summary">Infinite procedural dungeon crawler built for a game programming class. Solved non-grid room generation with a graph-based layout and used Dijkstra's algorithm over the room graph for enemy pathfinding. Unity, C#, Procedural Generation.</p>
+        <a class="card-link" href="dungeons-and-danger.html">Full project detail →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img class="card-thumb" src="assets/thumbnails/psx-shader.gif" alt="PSX Post Process Shader footage" loading="lazy">
+      <div class="card-body">
+        <h2>PSX Post Process Shader</h2>
+        <p class="card-year">2024 — Solo Project</p>
+        <p class="card-summary">Custom post-process shader replicating PS1-era visuals, built to drop into any Unity scene. Solved distance fog by converting Unity's raw depth buffer into linear eye-space depth. Includes pixelation, color quantization, and fog controls. Unity, ShaderLab, HLSL.</p>
+        <a class="card-link" href="psx-shader.html">Full project detail →</a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built with plain HTML/CSS, hosted on GitHub Pages. <a href="https://github.com/Magicow7" target="_blank" rel="noopener">github.com/Magicow7</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

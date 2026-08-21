@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart Rate Horror — Silas Raphaelidis</title>
+<meta name="description" content="A biometric horror experience driven by live heart rate data, built with custom HLSL compute shaders in Unity.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Silas Raphaelidis</a>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a class="current" href="projects.html">Projects</a>
+      <a href="https://www.linkedin.com/in/silas-raphaelidis-399760279/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <a class="back-link" href="projects.html">← Back to projects</a>
+
+  <div class="detail-hero">
+    <img class="detail-media" src="assets/thumbnails/heart-rate-horror.gif" alt="Heart Rate Horror gameplay footage">
+  </div>
+
+  <div class="detail-title">
+    <h1>Heart Rate Horror: Biometric Horror Experience</h1>
+    <p class="detail-meta">2024 · Solo Project · Immersive Media Design course</p>
+    <ul class="tag-list">
+      <li>Unity</li>
+      <li>C#</li>
+      <li>HLSL</li>
+      <li>Compute Shaders</li>
+      <li>Pulsoid API</li>
+    </ul>
+    <div class="link-buttons">
+      <a class="btn btn-secondary" href="https://github.com/Magicow7/IMDM-Graveyard-Project" target="_blank" rel="noopener">Source on GitHub</a>
+      <a class="btn btn-secondary" href="https://docs.google.com/document/d/1Po8Q4XT_HBitBhEmrEFPEfcGGhqGqsLDQtHtBt4LMyk/edit?usp=sharing" target="_blank" rel="noopener">Technical Write-up</a>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <h2>Overview</h2>
+    <p>An interactive horror installation that responds to the player's live heart rate, streamed in via the Pulsoid webhook API. Boid-flocking creatures move in sync with the player's heartbeat, approaching when calm and fleeing the instant the player turns to face them.</p>
+
+    <h2>The Problem</h2>
+    <p>The design depended on the creatures staying visually ambiguous — recognizable as threats, but never clearly resolved into a shape, to keep the tension of not knowing what they actually were. An early raymarched-metaball approach nailed that ambiguity but ran at only 20fps, and lost its mystery on repeated viewing anyway.</p>
+    <blockquote>Initial raymarched metaball approaches achieved only 20fps and lost their mystery upon repeated viewing.</blockquote>
+    <p>Once the boid/shader approach replaced it, a second problem showed up: reading boid state back from the GPU to the CPU each frame created a readback bottleneck that stalled the pipeline.</p>
+
+    <h2>The Solution</h2>
+    <p>The creatures are rendered with a screen-space distortion effect that warps the surrounding image instead of directly rendering geometry, preserving the ambiguity the raymarching version had without the performance cost. The GPU-to-CPU readback bottleneck was solved by encoding boid data using <code>InterlockedMax</code>, avoiding a full synchronous readback every frame.</p>
+
+    <h2>Result</h2>
+    <p>A custom post-process pipeline spanning fragment and compute shaders, running at 90-110fps with 50 boids on screen simultaneously.</p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built with plain HTML/CSS, hosted on GitHub Pages. <a href="https://github.com/Magicow7" target="_blank" rel="noopener">github.com/Magicow7</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

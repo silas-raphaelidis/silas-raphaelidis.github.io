@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VR: Musical Constellations — Silas Raphaelidis</title>
+<meta name="description" content="A VR music experience on Meta Quest where shooting constellations unlocks layered music tracks.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Silas Raphaelidis</a>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a class="current" href="projects.html">Projects</a>
+      <a href="https://www.linkedin.com/in/silas-raphaelidis-399760279/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <a class="back-link" href="projects.html">← Back to projects</a>
+
+  <div class="detail-hero">
+    <img class="detail-media" src="assets/thumbnails/vr-musical-constellations.png" alt="VR Musical Constellations screenshot">
+  </div>
+
+  <div class="detail-title">
+    <h1>VR: Musical Constellations</h1>
+    <p class="detail-meta">2024 · Immersive Media Design course · 4-person team</p>
+    <ul class="tag-list">
+      <li>Unity</li>
+      <li>C#</li>
+      <li>Meta Quest</li>
+      <li>Audio-Reactive VFX</li>
+    </ul>
+    <div class="link-buttons">
+      <a class="btn btn-secondary" href="https://github.com/Magicow7/IMDM-290-final-project/tree/Mateo's-Branch-1/IMDM-290-final" target="_blank" rel="noopener">Source on GitHub</a>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <h2>Overview</h2>
+    <p>A VR music experience for Meta Quest where the player floats in a space environment and shoots constellation targets to progressively unlock up to 10 layered music tracks. Built with a team of four and presented publicly as part of an immersive media design course.</p>
+
+    <h2>The Problem</h2>
+    <p>Each constellation needed to visibly pulse in sync with its own music track. Getting that timing precise — while staying performant on Meta Quest's limited hardware — turned out to be the harder half of the problem.</p>
+    <blockquote>The constellations needed to pulse in sync with their respective music tracks.</blockquote>
+
+    <h2>The Solution</h2>
+    <p>The system samples the amplitude of each audio source and maps it to the emission intensity of the matching constellation's glow. To avoid visible lag between sound and light, the amplitude is sampled slightly ahead of real-time playback rather than exactly on-beat, so the visual response lands in sync with what the player actually hears. The sampling rate itself was tuned carefully to balance responsiveness against the Quest's performance ceiling.</p>
+
+    <h2>Result</h2>
+    <p>A playable VR experience with particle effects and glowing constellations that react live to as many as 10 layered tracks, running comfortably on standalone Quest hardware.</p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built with plain HTML/CSS, hosted on GitHub Pages. <a href="https://github.com/Magicow7" target="_blank" rel="noopener">github.com/Magicow7</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

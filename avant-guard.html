@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avant Guard — Silas Raphaelidis</title>
+<meta name="description" content="Deterministic rollback netcode fighting game built in Unity with Photon Quantum 3.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Silas Raphaelidis</a>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a class="current" href="projects.html">Projects</a>
+      <a href="https://www.linkedin.com/in/silas-raphaelidis-399760279/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <a class="back-link" href="projects.html">← Back to projects</a>
+
+  <div class="detail-hero">
+    <img class="detail-media" src="assets/thumbnails/avant-guard.gif" alt="Avant Guard gameplay footage">
+  </div>
+
+  <div class="detail-title">
+    <h1>Avant Guard: Online Multiplayer Fighting Game</h1>
+    <p class="detail-meta">2026 · Senior Capstone · 4-person team, two semesters · Actively shipping to Steam</p>
+    <ul class="tag-list">
+      <li>Unity</li>
+      <li>Photon Quantum</li>
+      <li>C#</li>
+      <li>HLSL</li>
+      <li>Rollback Netcode</li>
+    </ul>
+    <p class="detail-meta" style="margin-top: 16px;">Repo is private while the game is in active development ahead of its Steam release.</p>
+  </div>
+
+  <div class="detail-body">
+    <h2>Overview</h2>
+    <p>Avant Guard is an online 1v1 fighting game built around deterministic rollback netcode, using Photon Quantum 3's fixed-timestep ECS framework. The goal was competitive-fighting-game-quality netcode: no visible rollback artifacts, no desync, playable across real-world latency.</p>
+
+    <h2>The Problem</h2>
+    <p>Rollback netcode has one non-negotiable requirement: every frame of game logic must be perfectly deterministic — given the same inputs, every client must produce the exact same game state. That constraint ruled out a lot of standard Unity workflows and meant reworking systems like physics and randomization to be fully deterministic under Quantum's simulation.</p>
+    <p>The hardest piece of that was hitboxes. The conventional approach — baking hitboxes into animation frames — doesn't hold up well under rollback, where frames get resimulated and rendering is decoupled from simulation time.</p>
+
+    <h2>The Solution</h2>
+    <p>Hitbox data was pulled out of animations entirely and defined explicitly within Quantum's fixed-timestep simulation, so hit detection stays deterministic regardless of how rendering interpolates between simulated frames. On top of that, a two-stage authoring tool let designers record weapon positions per animation frame and serialize them to JSON, so new attacks could be configured without writing code.</p>
+
+    <h2>Result</h2>
+    <p>A playable single-character, single-stage demo, tested online between players in Canada and Brazil with no perceptible rollback issues. The game is in active development, targeting a Steam release.</p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built with plain HTML/CSS, hosted on GitHub Pages. <a href="https://github.com/Magicow7" target="_blank" rel="noopener">github.com/Magicow7</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

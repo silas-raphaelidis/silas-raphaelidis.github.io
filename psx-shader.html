@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSX Post Process Shader — Silas Raphaelidis</title>
+<meta name="description" content="A customizable post-process shader that replicates PlayStation 1-era visuals, built for any Unity scene.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Silas Raphaelidis</a>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a class="current" href="projects.html">Projects</a>
+      <a href="https://www.linkedin.com/in/silas-raphaelidis-399760279/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <a class="back-link" href="projects.html">← Back to projects</a>
+
+  <div class="detail-hero">
+    <img class="detail-media" src="assets/thumbnails/psx-shader.gif" alt="PSX Post Process Shader footage">
+  </div>
+
+  <div class="detail-title">
+    <h1>PSX Post Process Shader</h1>
+    <p class="detail-meta">2024 · Game Programming course · Solo Project</p>
+    <ul class="tag-list">
+      <li>Unity</li>
+      <li>ShaderLab</li>
+      <li>HLSL</li>
+    </ul>
+    <div class="link-buttons">
+      <a class="btn btn-secondary" href="https://github.com/Magicow7/PSX-Post-Process" target="_blank" rel="noopener">Source on GitHub</a>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <h2>Overview</h2>
+    <p>A standalone post-process shader that replicates the look of PlayStation 1-era 3D graphics, built generally enough to drop into any Unity scene. It grew out of work originally done for <a href="dungeons-and-danger.html">Dungeons and Danger</a>.</p>
+
+    <h2>The Problem</h2>
+    <p>The distance fog effect was the hardest part, since it meant working with Unity's depth buffer for the first time. Raw depth values don't map directly to world-space distances, which made the fog depth thresholds trickier to get right than expected.</p>
+    <blockquote>Implementing the distance fog effect required working with Unity's depth buffer for the first time. The raw depth values don't map directly to world-space distances, which made implementing the fog depth thresholds trickier than expected.</blockquote>
+
+    <h2>The Solution</h2>
+    <p>Unity's built-in helper functions convert the raw depth buffer values into linear eye depth, producing usable camera-relative distance values that the fog effect can threshold against directly.</p>
+
+    <h2>Result</h2>
+    <p>A standalone post-process shader with inspector-exposed controls for:</p>
+    <ul>
+      <li>Pixelation level</li>
+      <li>Color channel quantization</li>
+      <li>Fog depth thresholds</li>
+      <li>Fog color</li>
+    </ul>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built with plain HTML/CSS, hosted on GitHub Pages. <a href="https://github.com/Magicow7" target="_blank" rel="noopener">github.com/Magicow7</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
