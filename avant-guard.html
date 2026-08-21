@@ -67,6 +67,37 @@
     <p>A playable single-character, single-stage demo, tested online between players in Canada and Brazil with no perceptible rollback issues. The game is in active development, targeting a Steam release.</p>
   </div>
 
+  <div class="gallery">
+    <h2>Development Process</h2>
+    <p class="gallery-intro">The project from early prototype to public showcase, in order.</p>
+    <div class="gallery-grid">
+      <button class="gallery-item" data-caption="Early prototype gameplay: placeholder models, testing the core combat loop.">
+        <img src="assets/avant-guard/early-prototype.jpg" alt="Early prototype gameplay with placeholder character models">
+        <span class="gallery-caption">Early prototype gameplay</span>
+      </button>
+      <button class="gallery-item" data-caption="Character concept art for Penny, exploring color and outfit variants.">
+        <img src="assets/avant-guard/character-concept-art.jpg" alt="Character concept art showing two color variants of Penny">
+        <span class="gallery-caption">Character concept art</span>
+      </button>
+      <button class="gallery-item" data-caption="Recording motion capture data for the game's animations at the Iribe mocap lab.">
+        <img src="assets/avant-guard/motion-capture-session.jpg" alt="Performer in the motion capture volume recording an attack animation">
+        <span class="gallery-caption">Working in the mocap lab</span>
+      </button>
+      <button class="gallery-item" data-caption="The finished stage environment in a live match.">
+        <img src="assets/avant-guard/finished-environment.jpg" alt="Finished game environment showing the festival stage and crowd">
+        <span class="gallery-caption">Finished environment</span>
+      </button>
+      <button class="gallery-item" data-caption="Playtesters at the Immersive Media Design Senior Capstone Showcase.">
+        <img src="assets/avant-guard/demo-day-showcase.jpg" alt="Players and spectators at the Senior Capstone Showcase demo table">
+        <span class="gallery-caption">Senior Capstone Showcase</span>
+      </button>
+      <button class="gallery-item" data-caption="Running the game at the IDGA demo booth.">
+        <img src="assets/avant-guard/idga-demo-booth.jpg" alt="Presenting Avant Guard at the IDGA demo booth">
+        <span class="gallery-caption">Showcase at IDGA</span>
+      </button>
+    </div>
+  </div>
+
   <div class="more-projects">
     <h2>More Projects</h2>
     <div class="more-grid">
@@ -87,6 +118,41 @@
     <p>Built with plain HTML/CSS, hosted on GitHub Pages. <a href="https://github.com/Magicow7" target="_blank" rel="noopener">github.com/Magicow7</a></p>
   </div>
 </footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+  <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+
+  document.querySelectorAll('.gallery-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+      lightboxImg.src = item.querySelector('img').src;
+      lightboxImg.alt = item.querySelector('img').alt;
+      lightboxCaption.textContent = item.dataset.caption || '';
+      lightbox.classList.add('open');
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  }
+
+  lightbox.addEventListener('click', closeLightbox);
+  document.querySelector('.lightbox-close').addEventListener('click', function (e) {
+    e.stopPropagation();
+    closeLightbox();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
 
 </body>
 </html>

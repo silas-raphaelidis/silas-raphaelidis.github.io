@@ -55,20 +55,36 @@
     </div>
   </div>
 
-  <div class="detail-body">
+  <div class="detail-body" style="padding-bottom: 0;">
     <h2>Overview</h2>
     <p>An interactive horror installation that responds to the player's live heart rate, streamed in via the Pulsoid webhook API. Boid-flocking creatures move in sync with the player's heartbeat, approaching when calm and fleeing the instant the player turns to face them.</p>
+  </div>
 
+  <div class="video-pair-section">
+    <h2>Demo</h2>
+    <div class="video-pair-captions">
+      <p class="video-caption">The distortion effect shown in isolation.</p>
+      <p class="video-caption">The final effect in action: boids creep up behind the user, moving to the beat of their heart rate, then flee the instant the user turns to look at them.</p>
+    </div>
+    <div class="video-pair">
+      <div class="video-embed">
+        <video src="assets/heart-rate-horror/effect-demo.mp4" controls preload="metadata" playsinline></video>
+      </div>
+      <div class="video-embed">
+        <video src="assets/heart-rate-horror/effect-in-action.mp4" controls preload="metadata" playsinline></video>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-body" style="padding-top: 0;">
     <h2>The Problem</h2>
-    <p>The design depended on the creatures staying visually ambiguous: recognizable as threats, but never clearly resolved into a shape, to keep the tension of not knowing what they actually were. An early raymarched-metaball approach nailed that ambiguity but ran at only 20fps, and lost its mystery on repeated viewing anyway.</p>
-    <blockquote>Initial raymarched metaball approaches achieved only 20fps and lost their mystery upon repeated viewing.</blockquote>
-    <p>Once the boid/shader approach replaced it, a second problem showed up: reading boid state back from the GPU to the CPU each frame created a readback bottleneck that stalled the pipeline.</p>
+    <p>The assignment required the use of a boids flocking algorithm. For my horror experience, I needed to find a way to make the boids feel genuinely unsettling rather than just visually novel. Once the viewer understands what they are looking at, the tension dies. So I had to create an effect that could obscure its own nature.</p>
 
     <h2>The Solution</h2>
-    <p>The creatures are rendered with a screen-space distortion effect that warps the surrounding image instead of directly rendering geometry, preserving the ambiguity the raymarching version had without the performance cost. The GPU-to-CPU readback bottleneck was solved by encoding boid data using <code>InterlockedMax</code>, avoiding a full synchronous readback every frame.</p>
+    <p>My first approach used raymarched metaballs to give the boids an amorphous, blobby appearance, but performance collapsed to 20fps with only 5 boids on screen, and the effect lost its mystery once you had seen it once. I pivoted to a screen-space distortion pipeline built across a fragment shader, a compute shader, and a post-process effect, warping the image around invisible circles projected onto each boid. The biggest hurdle with the new pipeline was a GPU-to-CPU readback bottleneck that was tanking performance. I solved it by encoding circle position and radius data for each boid into a single uint using <code>InterlockMax</code>, then passing the compute buffer directly to the fragment shader, avoiding the GPU-to-CPU readback entirely.</p>
 
     <h2>Result</h2>
-    <p>A custom post-process pipeline spanning fragment and compute shaders, running at 90-110fps with 50 boids on screen simultaneously.</p>
+    <p>Solo project. A live biometric horror experience running at 90-110fps with 50 boids driven by a real heart rate monitor.</p>
   </div>
 
   <div class="more-projects">

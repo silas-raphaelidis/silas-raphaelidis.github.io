@@ -53,10 +53,24 @@
     </div>
   </div>
 
-  <div class="detail-body">
+  <div class="detail-body" style="padding-bottom: 0;">
     <h2>Overview</h2>
     <p>A final project for an independent study on shader programming: recreating the "Bad Apple" music video in real time using 1,000 GPU-instanced paper airplanes, each acting as a single pixel-like unit in the final image.</p>
+  </div>
 
+  <div class="video-pair-section">
+    <h2>Demo</h2>
+    <p class="video-caption">Demonstration below, all rendered in real-time. Some fidelity was lost in the video compression for this web portfolio.</p>
+    <div class="video-embed">
+      <video src="assets/bad-apple/effect-demo.mp4" controls preload="metadata" playsinline></video>
+    </div>
+    <p class="video-caption" style="margin-top: 20px;">Side-by-side comparison with the original music video.</p>
+    <div class="video-embed">
+      <video src="assets/bad-apple/side-by-side.mp4" controls preload="metadata" playsinline></video>
+    </div>
+  </div>
+
+  <div class="detail-body" style="padding-top: 0;">
     <h2>The Problem</h2>
     <p>Reproducing the video's black-and-white frames meant distributing airplanes to match population density: dense in dark regions, sparse in light ones. Without that, airplanes would simply pile up on top of each other in white regions instead of spreading out naturally.</p>
     <blockquote>Without accounting for population density, airplanes would pile up on top of each other in white regions instead of spreading out naturally.</blockquote>
