@@ -3,8 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Heart Rate Horror — Silas Raphaelidis</title>
+<title>Heart Rate Horror | Silas Raphaelidis</title>
 <meta name="description" content="A biometric horror experience driven by live heart rate data, built with custom HLSL compute shaders in Unity.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://silasraphaelidis.dev/heart-rate-horror.html">
+<meta property="og:title" content="Heart Rate Horror | Silas Raphaelidis">
+<meta property="og:description" content="A biometric horror experience driven by live heart rate data, built with custom HLSL compute shaders in Unity.">
+<meta property="og:image" content="https://silasraphaelidis.dev/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Heart Rate Horror | Silas Raphaelidis">
+<meta name="twitter:description" content="A biometric horror experience driven by live heart rate data, built with custom HLSL compute shaders in Unity.">
+<meta name="twitter:image" content="https://silasraphaelidis.dev/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -48,7 +60,7 @@
     <p>An interactive horror installation that responds to the player's live heart rate, streamed in via the Pulsoid webhook API. Boid-flocking creatures move in sync with the player's heartbeat, approaching when calm and fleeing the instant the player turns to face them.</p>
 
     <h2>The Problem</h2>
-    <p>The design depended on the creatures staying visually ambiguous — recognizable as threats, but never clearly resolved into a shape, to keep the tension of not knowing what they actually were. An early raymarched-metaball approach nailed that ambiguity but ran at only 20fps, and lost its mystery on repeated viewing anyway.</p>
+    <p>The design depended on the creatures staying visually ambiguous: recognizable as threats, but never clearly resolved into a shape, to keep the tension of not knowing what they actually were. An early raymarched-metaball approach nailed that ambiguity but ran at only 20fps, and lost its mystery on repeated viewing anyway.</p>
     <blockquote>Initial raymarched metaball approaches achieved only 20fps and lost their mystery upon repeated viewing.</blockquote>
     <p>Once the boid/shader approach replaced it, a second problem showed up: reading boid state back from the GPU to the CPU each frame created a readback bottleneck that stalled the pipeline.</p>
 
@@ -57,6 +69,20 @@
 
     <h2>Result</h2>
     <p>A custom post-process pipeline spanning fragment and compute shaders, running at 90-110fps with 50 boids on screen simultaneously.</p>
+  </div>
+
+  <div class="more-projects">
+    <h2>More Projects</h2>
+    <div class="more-grid">
+      <a class="mini-card" href="avant-guard.html">
+        <img src="assets/thumbnails/avant-guard.gif" alt="Avant Guard">
+        <span>Avant Guard</span>
+      </a>
+      <a class="mini-card" href="bad-apple.html">
+        <img src="assets/thumbnails/bad-apple.gif" alt="Bad Apple x GPU Instancing">
+        <span>Bad Apple x GPU Instancing</span>
+      </a>
+    </div>
   </div>
 </div>
 

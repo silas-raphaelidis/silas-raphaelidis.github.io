@@ -3,8 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Avant Guard — Silas Raphaelidis</title>
+<title>Avant Guard | Silas Raphaelidis</title>
 <meta name="description" content="Deterministic rollback netcode fighting game built in Unity with Photon Quantum 3.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://silasraphaelidis.dev/avant-guard.html">
+<meta property="og:title" content="Avant Guard | Silas Raphaelidis">
+<meta property="og:description" content="Deterministic rollback netcode fighting game built in Unity with Photon Quantum 3.">
+<meta property="og:image" content="https://silasraphaelidis.dev/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Avant Guard | Silas Raphaelidis">
+<meta name="twitter:description" content="Deterministic rollback netcode fighting game built in Unity with Photon Quantum 3.">
+<meta name="twitter:image" content="https://silasraphaelidis.dev/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -45,14 +57,28 @@
     <p>Avant Guard is an online 1v1 fighting game built around deterministic rollback netcode, using Photon Quantum 3's fixed-timestep ECS framework. The goal was competitive-fighting-game-quality netcode: no visible rollback artifacts, no desync, playable across real-world latency.</p>
 
     <h2>The Problem</h2>
-    <p>Rollback netcode has one non-negotiable requirement: every frame of game logic must be perfectly deterministic — given the same inputs, every client must produce the exact same game state. That constraint ruled out a lot of standard Unity workflows and meant reworking systems like physics and randomization to be fully deterministic under Quantum's simulation.</p>
-    <p>The hardest piece of that was hitboxes. The conventional approach — baking hitboxes into animation frames — doesn't hold up well under rollback, where frames get resimulated and rendering is decoupled from simulation time.</p>
+    <p>Rollback netcode has one non-negotiable requirement: every frame of game logic must be perfectly deterministic: given the same inputs, every client must produce the exact same game state. That constraint ruled out a lot of standard Unity workflows and meant reworking systems like physics and randomization to be fully deterministic under Quantum's simulation.</p>
+    <p>The hardest piece of that was hitboxes. The conventional approach, baking hitboxes into animation frames, doesn't hold up well under rollback, where frames get resimulated and rendering is decoupled from simulation time.</p>
 
     <h2>The Solution</h2>
     <p>Hitbox data was pulled out of animations entirely and defined explicitly within Quantum's fixed-timestep simulation, so hit detection stays deterministic regardless of how rendering interpolates between simulated frames. On top of that, a two-stage authoring tool let designers record weapon positions per animation frame and serialize them to JSON, so new attacks could be configured without writing code.</p>
 
     <h2>Result</h2>
     <p>A playable single-character, single-stage demo, tested online between players in Canada and Brazil with no perceptible rollback issues. The game is in active development, targeting a Steam release.</p>
+  </div>
+
+  <div class="more-projects">
+    <h2>More Projects</h2>
+    <div class="more-grid">
+      <a class="mini-card" href="psx-shader.html">
+        <img src="assets/thumbnails/psx-shader.gif" alt="PSX Post Process Shader">
+        <span>PSX Post Process Shader</span>
+      </a>
+      <a class="mini-card" href="heart-rate-horror.html">
+        <img src="assets/thumbnails/heart-rate-horror.gif" alt="Heart Rate Horror">
+        <span>Heart Rate Horror</span>
+      </a>
+    </div>
   </div>
 </div>
 

@@ -1,21 +1,18 @@
 # Portfolio
 
-Silas Raphaelidis's portfolio site — two static pages, plain HTML/CSS, no build step.
+Silas Raphaelidis's portfolio site: a landing page, a projects grid, and six project detail pages, all plain HTML/CSS with no build step.
 
-- `index.html` — landing page: name, tagline, demo reel, links to projects + LinkedIn
-- `projects.html` — project cards: thumbnail, title, summary, link to full project detail
-- `style.css` — shared styles
-- `assets/thumbnails/` — project thumbnail images/gifs
+- `index.html`: landing page with name, tagline, demo reel, links to projects and LinkedIn
+- `projects.html`: project cards with thumbnail, title, summary, link to a full detail page
+- `avant-guard.html`, `heart-rate-horror.html`, `bad-apple.html`, `vr-musical-constellations.html`, `dungeons-and-danger.html`, `psx-shader.html`: individual project write-ups
+- `style.css`: shared styles
+- `assets/thumbnails/`: project thumbnail images/gifs
+- `CNAME`: custom domain config for GitHub Pages
 
-## Hosting on GitHub Pages
+## Hosting
 
-1. Push this repo to `github.com/Magicow7/portfolio-site` (or whatever repo name you pick).
-2. In the repo, go to **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to `Deploy from a branch`, branch `main`, folder `/ (root)`.
-4. Save. The site will be live at `https://magicow7.github.io/portfolio-site/` within a minute or two.
-
-For a bare `magicow7.github.io` URL (no `/portfolio-site` path), name the repo itself `Magicow7.github.io` instead.
+Hosted on GitHub Pages from the `main` branch of `github.com/Magicow7/Magicow7.github.io`. Any push to `main` rebuilds and updates the live site within a minute or two, at both `https://magicow7.github.io/` and the custom domain below.
 
 ## Custom domain
 
-Once you buy a domain, add a `CNAME` file to the repo root containing just the domain (e.g. `silasraphaelidis.com`), then set the DNS records per [GitHub's custom domain docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
+Live at `silasraphaelidis.dev` (registered via Namecheap). DNS points four `A` records at GitHub Pages' load balancer IPs (`185.199.108.153`, `.109.153`, `.110.153`, `.111.153`) plus a `CNAME` for `www`, per [GitHub's custom domain docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).

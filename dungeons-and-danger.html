@@ -3,8 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dungeons and Danger — Silas Raphaelidis</title>
+<title>Dungeons and Danger | Silas Raphaelidis</title>
 <meta name="description" content="An infinite, non-grid procedural dungeon crawler with graph-based room generation and Dijkstra-driven enemy pathfinding.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://silasraphaelidis.dev/dungeons-and-danger.html">
+<meta property="og:title" content="Dungeons and Danger | Silas Raphaelidis">
+<meta property="og:description" content="An infinite, non-grid procedural dungeon crawler with graph-based room generation and Dijkstra-driven enemy pathfinding.">
+<meta property="og:image" content="https://silasraphaelidis.dev/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dungeons and Danger | Silas Raphaelidis">
+<meta name="twitter:description" content="An infinite, non-grid procedural dungeon crawler with graph-based room generation and Dijkstra-driven enemy pathfinding.">
+<meta name="twitter:image" content="https://silasraphaelidis.dev/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -46,7 +58,7 @@
     <p>A 3D infinite dungeon crawler built for a game programming class, with dungeons that generate and expand dynamically as the player explores, rather than conforming to a fixed grid.</p>
 
     <h2>The Problem</h2>
-    <p>Most procedural dungeon systems constrain rooms to a grid, which makes both room placement and enemy pathfinding straightforward. Moving away from a grid — to allow rooms of arbitrary shape and orientation — meant losing those built-in guarantees and solving generation and pathfinding from scratch.</p>
+    <p>Most procedural dungeon systems constrain rooms to a grid, which makes both room placement and enemy pathfinding straightforward. Moving away from a grid, to allow rooms of arbitrary shape and orientation, meant losing those built-in guarantees and solving generation and pathfinding from scratch.</p>
     <blockquote>Most procedural dungeon systems conform to a grid, which makes room placement and pathfinding straightforward.</blockquote>
 
     <h2>The Solution</h2>
@@ -55,6 +67,20 @@
 
     <h2>Result</h2>
     <p>An infinitely generating 3D dungeon with dynamically loaded rooms and enemies that intelligently pursue the player across the graph. This project's post-process shader work was later split out into its own project: <a href="psx-shader.html">PSX Post Process Shader</a>.</p>
+  </div>
+
+  <div class="more-projects">
+    <h2>More Projects</h2>
+    <div class="more-grid">
+      <a class="mini-card" href="vr-musical-constellations.html">
+        <img src="assets/thumbnails/vr-musical-constellations.png" alt="VR: Musical Constellations">
+        <span>VR: Musical Constellations</span>
+      </a>
+      <a class="mini-card" href="psx-shader.html">
+        <img src="assets/thumbnails/psx-shader.gif" alt="PSX Post Process Shader">
+        <span>PSX Post Process Shader</span>
+      </a>
+    </div>
   </div>
 </div>
 
