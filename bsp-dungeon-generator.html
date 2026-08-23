@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stream Quest: BSP Dungeon Generator | Silas Raphaelidis</title>
+<meta name="description" content="A standalone, guaranteed-solvable dungeon generator built with binary space partitioning, delivered as a contracted deliverable for Stream Quest.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://silasraphaelidis.dev/bsp-dungeon-generator.html">
+<meta property="og:title" content="Stream Quest: BSP Dungeon Generator | Silas Raphaelidis">
+<meta property="og:description" content="A standalone, guaranteed-solvable dungeon generator built with binary space partitioning, delivered as a contracted deliverable for Stream Quest.">
+<meta property="og:image" content="https://silasraphaelidis.dev/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stream Quest: BSP Dungeon Generator | Silas Raphaelidis">
+<meta name="twitter:description" content="A standalone, guaranteed-solvable dungeon generator built with binary space partitioning, delivered as a contracted deliverable for Stream Quest.">
+<meta name="twitter:image" content="https://silasraphaelidis.dev/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Silas Raphaelidis</a>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a class="current" href="projects.html">Projects</a>
+      <a href="https://www.linkedin.com/in/silas-raphaelidis-399760279/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <a class="back-link" href="projects.html">← Back to projects</a>
+
+  <div class="detail-hero">
+    <img class="detail-media" src="assets/bsp-dungeon-generator/dungeon-example.png" alt="A generated dungeon layout with placeholder start, end, enemy, loot, and key props">
+  </div>
+
+  <div class="detail-title">
+    <h1>Stream Quest: BSP Dungeon Generator</h1>
+    <p class="detail-meta">2026 · Contract deliverable for Stream Quest (RichardStampDev) · Solo, ~1 week</p>
+    <ul class="tag-list">
+      <li>Unity</li>
+      <li>C#</li>
+      <li>Procedural Generation</li>
+      <li>Binary Space Partitioning</li>
+      <li>Graph Algorithms</li>
+    </ul>
+    <p class="detail-meta" style="margin-top: 16px;">Built as a contracted deliverable for another developer's project; not open source.</p>
+  </div>
+
+  <div class="detail-body">
+    <h2>Overview</h2>
+    <p>A standalone, drop-in dungeon generator built as a contracted deliverable for RichardStampDev's game Stream Quest, developed solo in about a week. Binary space partitioning carves a bounded area into rooms, which are then merged, connected, and populated into a fully connected, guaranteed-solvable dungeon. Every object in the dungeon, from doors to enemies to loot, is a placeholder so Richard can drop his own prefabs directly into the generator.</p>
+
+    <h2>The Problem</h2>
+    <p>The hardest problem was guaranteeing that every generated dungeon was actually solvable. Locked doors and their keys are placed after the room layout and its connections already exist, which makes it easy to accidentally seal a key behind the very door it's meant to open, or create a chain of locked doors with no valid order to unlock them in.</p>
+    <p>That sat on top of two earlier problems the generator also had to solve. Binary space partitioning splits the bounded area into a tree of rooms, but the resulting room-adjacency graph isn't guaranteed to be fully connected on its own, especially after small rooms get merged together. And even with both of those solved, a specific unlucky seed could still occasionally violate some other constraint, like not leaving enough boundary rooms to place a start and an end.</p>
+
+    <h2>The Solution</h2>
+    <p>Keys are placed using a reachability-expansion algorithm: starting from the entrance, it walks outward through unlocked doors only, and only places a key once the room in front of its lock is already confirmed reachable. Locks are resolved in shuffled passes so the exact order and key placement varies between seeds, and the algorithm throws an explicit exception if it ever detects a dependency cycle instead of silently generating a broken dungeon.</p>
+    <p>Connectivity is guaranteed by running a minimum spanning tree (Kruskal's algorithm with union-find) over the room adjacency graph after merging, so every room is reachable through exactly one path before any doors get placed.</p>
+    <p>For everything else, the whole generation pipeline runs inside a retry loop with deterministic reseeding: if a layout ever fails a constraint, it's thrown out and regenerated from a new seed automatically, up to 30 attempts, instead of shipping a broken dungeon.</p>
+
+    <h2>Result</h2>
+    <p>A standalone dungeon generator delivered as a contracted deliverable, built solo in about a week. Every run produces a fully connected, guaranteed-solvable dungeon with locked doors, keys, and budgeted enemy and loot placement, using placeholder assets that drop out in favor of Richard's own prefabs.</p>
+  </div>
+
+  <div class="gallery">
+    <h2>How It Works</h2>
+    <p class="gallery-intro">Placeholder legend:</p>
+    <ul class="legend-list">
+      <li><span class="legend-swatch" style="background: #3ecf5f;"></span>Green — start</li>
+      <li><span class="legend-swatch" style="background: #e0473f;"></span>Red — end</li>
+      <li><span class="legend-swatch" style="background: #f23fd6;"></span>Pink — enemy</li>
+      <li><span class="legend-swatch" style="background: #f2d63f;"></span>Yellow cube — loot</li>
+      <li><span class="legend-swatch" style="background: #6b4a2f;"></span>Brown block — locked door</li>
+      <li><span class="legend-swatch" style="background: #f2d63f;"></span>Yellow key — key pickup</li>
+    </ul>
+    <div class="gallery-grid">
+      <button class="gallery-item" data-caption="The room-connectivity graph (minimum spanning tree) overlaid on a generated layout, guaranteeing every room is reachable through exactly one path.">
+        <img src="assets/bsp-dungeon-generator/connectivity-graph.png" alt="Minimum spanning tree connectivity graph overlaid on a generated dungeon">
+        <span class="gallery-caption">Connectivity graph</span>
+      </button>
+      <button class="gallery-item" data-caption="Reserved tiles (shown in red) around walls, doorways, and spawn points that are excluded from enemy, loot, and key placement.">
+        <img src="assets/bsp-dungeon-generator/blacklist-visualization.png" alt="Reserved and blacklisted tiles highlighted in red around walls and doorways">
+        <span class="gallery-caption">Reserved tile blacklist</span>
+      </button>
+      <button class="gallery-item" data-caption="The same generator scaled up to a much larger dungeon, still fully connected and solvable.">
+        <img src="assets/bsp-dungeon-generator/large-scale-generation.png" alt="A much larger generated dungeon layout viewed from above">
+        <span class="gallery-caption">Large-scale generation</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="more-projects">
+    <h2>More Projects</h2>
+    <div class="more-grid">
+      <a class="mini-card" href="dungeons-and-danger.html">
+        <img src="assets/thumbnails/dungeons-and-danger.png" alt="Dungeons and Danger">
+        <span>Dungeons and Danger</span>
+      </a>
+      <a class="mini-card" href="psx-shader.html">
+        <img src="assets/thumbnails/psx-shader.gif" alt="PSX Post Process Shader">
+        <span>PSX Post Process Shader</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built with plain HTML/CSS, hosted on GitHub Pages. <a href="https://github.com/Magicow7" target="_blank" rel="noopener">github.com/Magicow7</a></p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+  <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+
+  document.querySelectorAll('.gallery-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+      lightboxImg.src = item.querySelector('img').src;
+      lightboxImg.alt = item.querySelector('img').alt;
+      lightboxCaption.textContent = item.dataset.caption || '';
+      lightbox.classList.add('open');
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  }
+
+  lightbox.addEventListener('click', closeLightbox);
+  document.querySelector('.lightbox-close').addEventListener('click', function (e) {
+    e.stopPropagation();
+    closeLightbox();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>

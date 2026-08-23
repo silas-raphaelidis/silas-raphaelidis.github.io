@@ -57,9 +57,11 @@
     <p>A standalone post-process shader that replicates the look of PlayStation 1-era 3D graphics, built generally enough to drop into any Unity scene. It grew out of work originally done for <a href="dungeons-and-danger.html">Dungeons and Danger</a>.</p>
 
     <h2>The Problem</h2>
-    <p>The distance fog effect was the hardest part, since it meant working with Unity's depth buffer for the first time. Raw depth values don't map directly to world-space distances, which made the fog depth thresholds trickier to get right than expected.</p>
+    <p>Faking the PS1's limited color depth meant quantizing each color channel down to a small number of possible values, but doing that naively produced obvious banding: hard, visible steps between color levels that broke the illusion instead of selling it.</p>
+
     <h2>The Solution</h2>
-    <p>Unity's built-in helper functions convert the raw depth buffer values into linear eye depth, producing usable camera-relative distance values that the fog effect can threshold against directly.</p>
+    <p>I applied ordered dithering using a Bayer matrix, offsetting each pixel's quantization threshold by a value from the matrix before rounding to the nearest available color level. That breaks the flat bands up into a dithered pattern that reads as a smooth gradient at normal viewing distance, matching the dithered look real PS1 hardware produced under the same color constraints.</p>
+    <p>Distance fog needed a similar fix for a different constraint: raw depth buffer values don't map linearly to world-space distance, so the fog thresholds were responding to the wrong curve. Converting to linear eye depth first gave the fog effect a distance value that actually corresponds to how far something is from the camera.</p>
 
     <h2>Result</h2>
     <p>A standalone post-process shader with inspector-exposed controls for:</p>
@@ -101,9 +103,9 @@
   <div class="more-projects">
     <h2>More Projects</h2>
     <div class="more-grid">
-      <a class="mini-card" href="dungeons-and-danger.html">
-        <img src="assets/thumbnails/dungeons-and-danger.png" alt="Dungeons and Danger">
-        <span>Dungeons and Danger</span>
+      <a class="mini-card" href="bsp-dungeon-generator.html">
+        <img src="assets/thumbnails/bsp-dungeon-generator.png" alt="Stream Quest: BSP Dungeon Generator">
+        <span>Stream Quest: BSP Dungeon Generator</span>
       </a>
       <a class="mini-card" href="avant-guard.html">
         <img src="assets/thumbnails/avant-guard.gif" alt="Avant Guard">
