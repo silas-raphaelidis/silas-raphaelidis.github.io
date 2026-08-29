@@ -347,6 +347,30 @@ a:hover {
 
 .detail-hero {
   padding: 20px 0 0;
+  position: relative;
+}
+
+.mute-toggle {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(15, 16, 19, 0.72);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.mute-toggle:hover {
+  border-color: var(--accent-dim);
+  background: rgba(15, 16, 19, 0.9);
 }
 
 .detail-media {

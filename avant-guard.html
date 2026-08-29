@@ -36,7 +36,8 @@
   <a class="back-link" href="projects.html">← Back to projects</a>
 
   <div class="detail-hero">
-    <img class="detail-media" src="assets/thumbnails/avant-guard.gif" alt="Avant Guard gameplay footage">
+    <video class="detail-media" id="hero-video" src="assets/avant-guard/hero-gameplay.mp4" autoplay loop muted playsinline></video>
+    <button class="mute-toggle" id="mute-toggle" aria-label="Unmute video">🔇</button>
   </div>
 
   <div class="detail-title">
@@ -151,6 +152,14 @@
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeLightbox();
+  });
+
+  const heroVideo = document.getElementById('hero-video');
+  const muteToggle = document.getElementById('mute-toggle');
+  muteToggle.addEventListener('click', function () {
+    heroVideo.muted = !heroVideo.muted;
+    muteToggle.textContent = heroVideo.muted ? '🔇' : '🔊';
+    muteToggle.setAttribute('aria-label', heroVideo.muted ? 'Unmute video' : 'Mute video');
   });
 </script>
 
