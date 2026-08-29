@@ -103,6 +103,12 @@ a:hover {
 .hero {
   padding: 96px 0 64px;
   text-align: center;
+  position: relative;
+  background-image:
+    linear-gradient(180deg, rgba(15, 16, 19, 0.55) 0%, rgba(15, 16, 19, 0.88) 65%, var(--bg) 100%),
+    url('assets/hero-banner.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .hero h1 {
